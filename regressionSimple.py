@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-
+import pickle
 import io
 
 
@@ -27,8 +27,14 @@ print(f"Coefficient (pente) : {model.coef_[0]:.2f}")
 print(f"Ordonnée à l'origine : {model.intercept_:.2f}")
 print("-" * 30)
 
+
+model_filename = 'linear_regression_model.pkl'
+with open(model_filename, 'wb') as file:
+    pickle.dump(model, file)
+
 # 5. Réaliser des prédictions
 y_pred = model.predict(X)
+# Enregistrer le model au format pickle
 
 # 6. Visualiser les données et la ligne de régression avec Matplotlib
 plt.figure(figsize=(10, 6))
